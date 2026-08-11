@@ -298,12 +298,17 @@ type ContactCards struct {
 }
 
 type ContactEmail struct {
-	ID        string
-	Name      string
-	Email     string
-	Type      []string
-	ContactID string
-	LabelIDs  []string
+	ID             string
+	Name           string
+	Email          string
+	Type           []string
+	Defaults       int
+	Order          int
+	ContactID      string
+	CanonicalEmail *string
+	LabelIDs       []string
+	IsProton       *Bool
+	LastUsedTime   int64
 }
 
 type CreateContactsReq struct {

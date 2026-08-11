@@ -80,6 +80,13 @@ func initRouter(s *Server) {
 		}
 	}
 
+	// Event payloads use v5. The latest-event cursor remains on core/v4.
+	if core := s.r.Group("/core/v5", s.requireAuth()); core != nil {
+		if events := core.Group("/events"); events != nil {
+			events.GET("/:eventID", s.handleGetEvents())
+		}
+	}
+
 	// All mail routes need authentication.
 	if mail := s.r.Group("/mail/v4", s.requireAuth()); mail != nil {
 		if settings := mail.Group("/settings"); settings != nil {

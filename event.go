@@ -109,7 +109,7 @@ func (c *Client) getEvent(ctx context.Context, eventID string) (Event, bool, err
 	}
 
 	if err := c.do(ctx, func(r *resty.Request) (*resty.Response, error) {
-		return r.SetResult(&res).Get("/core/v4/events/" + eventID)
+		return r.SetResult(&res).Get("/core/v5/events/" + eventID)
 	}); err != nil {
 		return Event{}, false, err
 	}
